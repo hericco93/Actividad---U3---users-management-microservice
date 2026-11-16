@@ -76,5 +76,18 @@ public class GlobalExceptionHandler {
     return new ApiErrorResponse(
         HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error interno del servidor.");
   }
+  @ExceptionHandler(com.jcaa.usersmanagement.domain.exception.PaisNotFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ApiErrorResponse handlePaisNotFound(
+          final com.jcaa.usersmanagement.domain.exception.PaisNotFoundException exception) {
+    return new ApiErrorResponse(HttpStatus.NOT_FOUND.value(), exception.getMessage());
+  }
+
+  @ExceptionHandler(com.jcaa.usersmanagement.domain.exception.PaisAlreadyExistsException.class)
+  @ResponseStatus(HttpStatus.CONFLICT)
+  public ApiErrorResponse handlePaisAlreadyExists(
+          final com.jcaa.usersmanagement.domain.exception.PaisAlreadyExistsException exception) {
+    return new ApiErrorResponse(HttpStatus.CONFLICT.value(), exception.getMessage());
+  }
 }
 
