@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "70e07d63-e30a-45ca-bd59-c5731a49c163",
+    "name": "Users Management - Países API (Ejercicio 26)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "60216878",
+    "_collection_link": "https://go.postman.co/collection/60216878-70e07d63-e30a-45ca-bd59-c5731a49c163?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Login Admin (Obtener JWT)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();",
+              "if (res.token) { pm.collectionVariables.set('token', res.token); }"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin1234!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Crear País (POST)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();",
+              "if (res.id) { pm.collectionVariables.set('paisId', res.id); }"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Colombia\",\n  \"presidente\": \"Gustavo Petro\",\n  \"continente\": \"América del Sur\",\n  \"nombreHimno\": \"Oh Gloria Inmarcesible\",\n  \"numHabitantes\": 52215503,\n  \"numDepartamentos\": 32,\n  \"numMunicipios\": 1123,\n  \"idiomaPrincipal\": \"Español\",\n  \"numUniversidades\": 300,\n  \"tipoDemocracia\": \"República presidencialista\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/paises",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "paises"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Listar Países (GET All)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/paises",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "paises"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Buscar País por ID (GET By Id)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/paises/{{paisId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "paises",
+            "{{paisId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Actualizar País (PUT)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Colombia\",\n  \"presidente\": \"Presidente Actualizado\",\n  \"continente\": \"América del Sur\",\n  \"nombreHimno\": \"Oh Gloria Inmarcesible\",\n  \"numHabitantes\": 53000000,\n  \"numDepartamentos\": 32,\n  \"numMunicipios\": 1123,\n  \"idiomaPrincipal\": \"Español\",\n  \"numUniversidades\": 310,\n  \"tipoDemocracia\": \"República presidencialista\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/paises/{{paisId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "paises",
+            "{{paisId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Eliminar País (DELETE)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/paises/{{paisId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "paises",
+            "{{paisId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "paisId",
+      "value": ""
+    }
+  ]
+}
