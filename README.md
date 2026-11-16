@@ -38,3 +38,21 @@ automático de cada commit que llegue a la rama `main`.
 
 Las credenciales nunca deben guardarse en `application.properties` ni en
 `render.yaml`. Para desarrollo local, deben proporcionarse como variables de entorno.
+
+## 🌍 Módulo de Países (Ejercicio 26)
+
+Implementación completa bajo **Arquitectura Hexagonal + DDD + CQRS + Spring JDBC puro** para la gestión de países.
+
+### Despliegue en Producción (Render + MySQL Cloud)
+- **Swagger UI:** https://actividad-u3-users-management.onrender.com/swagger-ui.html
+- **Health Check:** https://actividad-u3-users-management.onrender.com/api/health
+- **Colección de Postman:** Disponible en `postman/Paises_API.postman_collection.json`
+
+### Endpoints CRUDL (`/api/paises`)
+| Método | Ruta | Descripción | Acceso |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/paises` | Crear un nuevo país | `ADMIN` (JWT) |
+| `GET` | `/api/paises` | Listar todos los países | Autenticado (JWT) |
+| `GET` | `/api/paises/{id}` | Consultar un país por ID | Autenticado (JWT) |
+| `PUT` | `/api/paises/{id}` | Actualizar un país existente | `ADMIN` (JWT) |
+| `DELETE` | `/api/paises/{id}` | Eliminar un país por ID | `ADMIN` (JWT) |
