@@ -31,3 +31,18 @@ VALUES (
     'ACTIVE'
 );
 
+CREATE TABLE IF NOT EXISTS paises (
+                                      id VARCHAR(36) NOT NULL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    presidente VARCHAR(120) NOT NULL,
+    continente VARCHAR(60) NOT NULL,
+    nombre_himno VARCHAR(150) NOT NULL,
+    num_habitantes BIGINT NOT NULL,
+    num_departamentos INT NOT NULL,
+    num_municipios INT NOT NULL,
+    idioma_principal VARCHAR(80) NOT NULL,
+    num_universidades INT NOT NULL,
+    tipo_democracia VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
