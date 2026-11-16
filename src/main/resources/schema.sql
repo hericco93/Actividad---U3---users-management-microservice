@@ -32,7 +32,7 @@ VALUES (
 );
 
 CREATE TABLE IF NOT EXISTS paises (
-                                      id VARCHAR(36) NOT NULL PRIMARY KEY,
+    id VARCHAR(36) NOT NULL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL UNIQUE,
     presidente VARCHAR(120) NOT NULL,
     continente VARCHAR(60) NOT NULL,
